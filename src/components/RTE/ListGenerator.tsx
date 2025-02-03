@@ -26,52 +26,53 @@ const ListGenerator = () => {
     );
   };
 
-  const newEntryAdd = (e: number) => {
-    console.log(e);
-    console.log(e === listContents.length - 1);
-    if (e === listContents.length - 1) {
-      setListContents((prev: any) => [
-        ...prev,
-        {
-          content: "",
-          placeholder: "Enter data...",
-          level: 0,
-        },
-      ]);
-    } else {
-      setListContents((prev: any) => [
-        ...prev.slice(0, e + 1),
-        {
-          content: "",
-          placeholder: "Enter data...",
-          level: 0,
-        },
-        ...prev.slice(e + 1),
-      ]);
+  const newEntryAdd = (e?: number) => {
+    if (e) {
+      if (e === listContents.length - 1) {
+        setListContents((prev: any) => [
+          ...prev,
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 0,
+          },
+        ]);
+      } else {
+        setListContents((prev: any) => [
+          ...prev.slice(0, e + 1),
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 0,
+          },
+          ...prev.slice(e + 1),
+        ]);
+      }
     }
   };
 
-  const nestedEntryAdd = (e: number) => {
-    console.log(e);
-    if (e === listContents.length - 1) {
-      setListContents((prev: any) => [
-        ...prev,
-        {
-          content: "",
-          placeholder: "Enter data...",
-          level: 1,
-        },
-      ]);
-    } else {
-      setListContents((prev: any) => [
-        ...prev.slice(0, e + 1),
-        {
-          content: "",
-          placeholder: "Enter data...",
-          level: 1,
-        },
-        ...prev.slice(e + 1),
-      ]);
+  const nestedEntryAdd = (e?: number) => {
+    if (e) {
+      if (e === listContents.length - 1) {
+        setListContents((prev: any) => [
+          ...prev,
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 1,
+          },
+        ]);
+      } else {
+        setListContents((prev: any) => [
+          ...prev.slice(0, e + 1),
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 1,
+          },
+          ...prev.slice(e + 1),
+        ]);
+      }
     }
   };
 
