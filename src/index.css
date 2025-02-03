@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Noto Sans Hatran", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+[contentEditable="true"]:empty:not(:focus):before {
+  content: attr(data-text);
+}
+
+/*
+Styles for dropdown on hover in the iconButton
+*/
+
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 10;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* .dropdown-content a {
+  display: block;
+} */
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
