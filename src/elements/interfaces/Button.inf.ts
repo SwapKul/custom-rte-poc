@@ -12,3 +12,11 @@ export interface IconButtonOption {
   action?: (index?: number) => void;
   value?: string;
 }
+
+export interface ActionButtonProps {
+  label: string;
+  bg: string;
+  w: string;
+  action: () => void;
+  disabled?: boolean;
+}

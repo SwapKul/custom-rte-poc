@@ -9,6 +9,7 @@ const ContentTypeSelector = ({
   action,
   index,
   removeAction,
+  updateAction,
 }: any) => {
   const [contentType, setContentType] = useState(type);
 
@@ -58,11 +59,13 @@ const ContentTypeSelector = ({
               type="text"
               placeholder="Heading"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
+              onChange={(e) => updateAction(index, e.target.value)}
             />
           ) : contentType === "para" ? (
             <textarea
               placeholder="Paragraph"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
+              onChange={(e) => updateAction(index, e.target.value)}
             />
           ) : contentType === "list" ? (
             <ListGenerator />
@@ -70,6 +73,9 @@ const ContentTypeSelector = ({
             <input
               type="file"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
+              onChange={(e) =>
+                updateAction(index, e.target.files && e.target.files[0])
+              }
             />
           ) : null}
         </div>

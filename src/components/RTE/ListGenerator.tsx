@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import IconButton from "../../elements/IconButton";
-import { IconButtonOption } from "../../elements/interfaces/IconButton.inf";
+import { IconButtonOption } from "../../elements/interfaces/Button.inf";
 
 const ListGenerator = () => {
   const [listContents, setListContents] = useState([
