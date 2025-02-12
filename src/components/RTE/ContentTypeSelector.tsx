@@ -106,6 +106,34 @@ const ContentTypeSelector = ({
                 )
               }
             />
+          ) : type === "link" ? (
+            <div className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm">
+              <input
+                type="text"
+                placeholder="Enter URL"
+                value={value as string}
+                className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
+                onChange={(e) =>
+                  dispatch(
+                    updateAction({
+                      index,
+                      value: e.target.value,
+                    })
+                  )
+                }
+              />
+              <p className="w-full flex items-center mt-2">
+                {" "}
+                Click to visit:-
+                <a
+                  href={value as string}
+                  target="_blank"
+                  className="ml-1 hover:underline text-blue-500"
+                >
+                  {typeof value === "string" ? value : "Link"}
+                </a>
+              </p>
+            </div>
           ) : null}
         </div>
       )}

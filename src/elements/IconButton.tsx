@@ -7,6 +7,7 @@ const IconButton = ({
   font,
   options,
   index,
+  level,
 }: IconButtonProps) => {
   return (
     <div className="dropdown">
@@ -28,7 +29,7 @@ const IconButton = ({
           {options.map(({ label, action }, ind) => (
             <li
               className="cursor-pointer p-2 hover:text-black hover:bg-[rgba(255,255,255,0.7)] duration-150"
-              onClick={() => action && action(index)}
+              onClick={() => action && action(index, level)}
               key={ind}
             >
               {label}

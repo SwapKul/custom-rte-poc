@@ -27,7 +27,8 @@ const ListGenerator = () => {
   };
 
   const newEntryAdd = (e?: number) => {
-    if (e) {
+    console.log("===> newEntryAdd", e);
+    if (e !== undefined) {
       if (e === listContents.length - 1) {
         setListContents((prev: any) => [
           ...prev,
@@ -51,15 +52,16 @@ const ListGenerator = () => {
     }
   };
 
-  const nestedEntryAdd = (e?: number) => {
-    if (e) {
+  const nestedEntryAdd = (e?: number, level?: number) => {
+    console.log("===> nestedEntryAdd", e, level);
+    if (e !== undefined) {
       if (e === listContents.length - 1) {
         setListContents((prev: any) => [
           ...prev,
           {
             content: "",
             placeholder: "Enter data...",
-            level: 1,
+            level: (level || 0) + 1,
           },
         ]);
       } else {
@@ -68,7 +70,7 @@ const ListGenerator = () => {
           {
             content: "",
             placeholder: "Enter data...",
-            level: 1,
+            level: (level || 0) + 1,
           },
           ...prev.slice(e + 1),
         ]);
@@ -106,6 +108,7 @@ const ListGenerator = () => {
             font="1rem"
             index={index}
             options={ListEntryOption}
+            level={item.level}
           />
           <input
             className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"

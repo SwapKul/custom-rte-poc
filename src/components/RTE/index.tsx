@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import ContentTypeSelector from "./ContentTypeSelector";
 import { IContent } from "./interfaces";
 import IconButton from "@elements/IconButton";
@@ -19,11 +17,9 @@ const RTE = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log("===> content", content);
-
   const resetDisabled = content.length === 1 && content[0].type === "select";
 
-  const submitDisabled = content.some((cnt) => cnt.type === "select");
+  const submitDisabled = content.some((cnt: IContent) => cnt.type === "select");
 
   // const addContent = () => {
   //   setContent((prev: any) => [

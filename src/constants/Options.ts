@@ -1,3 +1,5 @@
+import { IContentTypes } from "@interfaces/common";
+
 export const options = [
   {
     title: "Bold",
@@ -16,7 +18,7 @@ export const options = [
   },
 ];
 
-export const contentTypes = [
+export const contentTypes: IContentTypes[] = [
   {
     title: "Heading",
     value: "heading",
@@ -32,5 +34,9 @@ export const contentTypes = [
   {
     title: "Media",
     value: "media",
+  },
+  {
+    title: "Link",
+    value: "link",
   },
 ];

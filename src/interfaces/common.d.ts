@@ -23,3 +23,8 @@ export interface IStoreState {
   selectedData: any;
   status: "idle" | "loading" | "failed";
 }
+
+export interface IContentTypes {
+  title: string;
+  value: string;
+}
