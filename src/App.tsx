@@ -1,4 +1,4 @@
-import RTE from "./components/RTE/RTE";
+import RTE from "@components/RTE";
 
 function App() {
   return <RTE />;

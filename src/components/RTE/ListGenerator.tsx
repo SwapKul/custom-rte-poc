@@ -100,10 +100,10 @@ const ListGenerator = () => {
           onDragCapture={(e) => console.log(e)}
         >
           <IconButton
-            content={"+"}
+            content={"fa-solid fa-plus"}
             // action={newEntryAdd}
             size={1.5}
-            font="md"
+            font="1rem"
             index={index}
             options={ListEntryOption}
           />
@@ -115,10 +115,10 @@ const ListGenerator = () => {
             onChange={(e: any) => updateContent(index, e.target.value)}
           />
           <IconButton
-            content={"X"}
+            content={"fa-solid fa-trash"}
             action={() => removeContent(index)}
             size={1.5}
-            font="md"
+            font="0.75rem"
           />
         </div>
       ))}

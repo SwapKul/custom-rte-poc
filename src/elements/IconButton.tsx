@@ -14,12 +14,13 @@ const IconButton = ({
         style={{
           height: `${size}rem`,
           width: `${size}rem`,
+          fontSize: font,
         }}
-        className={`dropbtn border border-black text-${font} flex items-center justify-center rounded-[50%] hover:bg-[rgba(0,0,0,0.4)] hover:text-white duration-150`}
+        className={`dropbtn border border-black flex items-center justify-center rounded-[50%] hover:bg-[rgba(0,0,0,0.4)] hover:text-white duration-150`}
         onClick={action}
         disabled={!action}
       >
-        {content}
+        <i className={content}></i>
       </button>
 
       {options && options?.length > 0 && (

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import ActionButton from "./ActionButton";
-import { IModalProps } from "./Modal.inf";
+import { IModalProps } from "./interfaces/Modal.inf";
 
 const Modal = ({ title, content, open, handleClose }: IModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -27,11 +27,10 @@ const Modal = ({ title, content, open, handleClose }: IModalProps) => {
     };
   }, [open, handleClose]);
   const yesClick = () => {
-    console.log("Yes Clicked");
+    handleClose(true);
   };
 
   const noClick = () => {
-    console.log("No Clicked");
     handleClose();
   };
   return (
