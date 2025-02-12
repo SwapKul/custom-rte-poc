@@ -10,6 +10,8 @@ export default defineConfig({
       "@elements": "/src/elements",
       "@constants": "/src/constants",
       "@interfaces": "/src/interfaces",
+      "@hooks": "/src/hooks",
+      "@store": "/src/store",
     },
   },
 });

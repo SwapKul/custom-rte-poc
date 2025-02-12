@@ -28,7 +28,9 @@
       "@components/*": ["src/components/*"],
       "@elements/*": ["src/elements/*"],
       "@constants/*": ["src/constants/*"],
-      "@interfaces/*": ["src/interfaces/*"]
+      "@interfaces/*": ["src/interfaces/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@store/*": ["src/store/*"]
     }
   },
   "include": ["src"]

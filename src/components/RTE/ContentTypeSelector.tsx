@@ -5,6 +5,7 @@ import IconButton from "../../elements/IconButton";
 import ListGenerator from "./ListGenerator";
 import Modal from "../../elements/Modal";
 import { IContentTypeSelectorProps } from "./interfaces";
+import { useAppDispatch } from "@hooks/index";
 
 const ContentTypeSelector = ({
   type = "select",
@@ -17,11 +18,12 @@ const ContentTypeSelector = ({
   const [contentType, setContentType] = useState(type);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const update = (event: any, isExplicit: boolean = false) => {
     const { value } = event.target;
     if (type === "select" || isExplicit) {
-      action(index, value);
+      dispatch(action({ index, type: value }));
     } else {
       setModalOpen(true);
     }
@@ -49,14 +51,14 @@ const ContentTypeSelector = ({
           name="content_type"
           id="content_type"
           value={type}
-          className="ml-auto border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
+          className="cursor-pointer ml-auto border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
           onChange={update}
         >
           <option value="select" disabled>
             --SELECT--
           </option>
           {contentTypes.map(({ title, value }) => (
-            <option key={title} value={value}>
+            <option key={title} value={value} className="cursor-pointer">
               {title}
             </option>
           ))}
@@ -64,7 +66,7 @@ const ContentTypeSelector = ({
       </div>
       <IconButton
         content={"fa-solid fa-trash"}
-        action={() => removeAction(index)}
+        action={() => dispatch(removeAction({ index }))}
         size={1.5}
         font="0.75rem"
       />
@@ -76,14 +78,18 @@ const ContentTypeSelector = ({
               placeholder="Heading"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
               value={value as string}
-              onChange={(e) => updateAction(index, e.target.value)}
+              onChange={(e) =>
+                dispatch(updateAction({ index, value: e.target.value }))
+              }
             />
           ) : type === "para" ? (
             <textarea
               placeholder="Paragraph"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
               value={value as string}
-              onChange={(e) => updateAction(index, e.target.value)}
+              onChange={(e) =>
+                dispatch(updateAction({ index, value: e.target.value }))
+              }
             />
           ) : type === "list" ? (
             <ListGenerator />
@@ -92,7 +98,12 @@ const ContentTypeSelector = ({
               type="file"
               className="w-full p-2 border-2 rounded-[5px] outline-[grey] outline-1 text-sm"
               onChange={(e) =>
-                updateAction(index, e.target.files && e.target.files[0])
+                dispatch(
+                  updateAction({
+                    index,
+                    value: e.target.files && e.target.files[0],
+                  })
+                )
               }
             />
           ) : null}

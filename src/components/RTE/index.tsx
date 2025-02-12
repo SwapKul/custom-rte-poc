@@ -1,73 +1,80 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState } from "react";
 import ContentTypeSelector from "./ContentTypeSelector";
 import { IContent } from "./interfaces";
 import IconButton from "@elements/IconButton";
 import ActionButton from "@elements/ActionButton";
+import { useAppDispatch, useAppSelector } from "@hooks/index";
+import {
+  addContent,
+  allContent,
+  removeSelectedContent,
+  resetContent,
+  updateContent,
+  updateContentType,
+} from "@store/content/contentSlice";
 
 const RTE = () => {
-  const [content, setContent] = useState([
-    {
-      type: "select",
-      value: "",
-    },
-  ] as IContent[]);
+  const content = useAppSelector(allContent);
+
+  const dispatch = useAppDispatch();
+
+  console.log("===> content", content);
 
   const resetDisabled = content.length === 1 && content[0].type === "select";
 
   const submitDisabled = content.some((cnt) => cnt.type === "select");
 
-  const addContent = () => {
-    setContent((prev: any) => [
-      ...prev,
-      {
-        type: "select",
-        content: null,
-      },
-    ]);
-  };
+  // const addContent = () => {
+  //   setContent((prev: any) => [
+  //     ...prev,
+  //     {
+  //       type: "select",
+  //       content: null,
+  //     },
+  //   ]);
+  // };
 
-  const updateContent = (index: number, value: string | unknown) => {
-    setContent((prev: IContent[]) =>
-      prev.map((content: IContent, ind: number) =>
-        ind === index ? { ...content, value } : content
-      )
-    );
-  };
+  // const updateContent = (index: number, value: string | unknown) => {
+  //   setContent((prev: IContent[]) =>
+  //     prev.map((content: IContent, ind: number) =>
+  //       ind === index ? { ...content, value } : content
+  //     )
+  //   );
+  // };
 
-  const resetContent = () => {
-    setContent([
-      {
-        type: "select",
-        value: null,
-      },
-    ]);
-  };
+  // const resetContent = () => {
+  //   setContent([
+  //     {
+  //       type: "select",
+  //       value: "",
+  //     },
+  //   ]);
+  // };
 
   const submitContent = () => {
     console.log("===> submitContent", content);
   };
 
-  const removeContent = (index: number) => {
-    setContent((prev: any) =>
-      prev.filter((_: any, ind: number) => ind !== index)
-    );
-  };
+  // const removeContent = (index: number) => {
+  //   setContent((prev: any) =>
+  //     prev.filter((_: any, ind: number) => ind !== index)
+  //   );
+  // };
 
-  const updateContentType = (index: number, type: string) => {
-    setContent((prev: any) =>
-      prev.map((content: any, ind: number) =>
-        ind === index ? { ...content, type } : content
-      )
-    );
-  };
+  // const updateContentType = (index: number, type: string) => {
+  //   setContent((prev: any) =>
+  //     prev.map((content: any, ind: number) =>
+  //       ind === index ? { ...content, type } : content
+  //     )
+  //   );
+  // };
 
   return (
     <div className="flex flex-wrap w-[90%] m-auto mt-[20vh] border border-black p-4 rounded-[5px]">
       <IconButton
         content={"fa-solid fa-plus fa-beat"}
-        action={addContent}
+        action={() => dispatch(addContent())}
         size={2}
         font={"1.25rem"}
       />
@@ -81,7 +88,7 @@ const RTE = () => {
               type={type}
               action={updateContentType}
               updateAction={updateContent}
-              removeAction={removeContent}
+              removeAction={removeSelectedContent}
               index={index}
               value={value}
             />
@@ -91,7 +98,7 @@ const RTE = () => {
           <ActionButton
             label="Reset"
             w="40%"
-            action={resetContent}
+            action={() => dispatch(resetContent())}
             bg="#f07674"
             disabled={resetDisabled}
           />
