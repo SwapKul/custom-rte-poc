@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconButton from "../../elements/IconButton";
 import { IconButtonOption } from "../../elements/interfaces/Button.inf";
 
@@ -12,8 +12,27 @@ const ListGenerator = () => {
     },
   ] as any);
 
+  const [newListContents, setNewListContents] = useState([
+    {
+      content: "",
+      placeholder: "Enter data...",
+      level: 0,
+      child: [],
+    },
+  ] as any);
+
+  useEffect(() => {
+    console.log("===> listContents", listContents);
+    console.log("===> newListContents", newListContents);
+  }, [listContents, newListContents]);
+
   const updateContent = (index: number, content: string) => {
     setListContents((prev: any) =>
+      prev.map((item: any, ind: number) =>
+        ind === index ? { ...item, content } : item
+      )
+    );
+    setNewListContents((prev: any) =>
       prev.map((item: any, ind: number) =>
         ind === index ? { ...item, content } : item
       )
@@ -22,6 +41,9 @@ const ListGenerator = () => {
 
   const removeContent = (index: number) => {
     setListContents((prev: any) =>
+      prev.filter((_: any, ind: number) => ind !== index)
+    );
+    setNewListContents((prev: any) =>
       prev.filter((_: any, ind: number) => ind !== index)
     );
   };
@@ -38,6 +60,15 @@ const ListGenerator = () => {
             level: 0,
           },
         ]);
+        setNewListContents((prev: any) => [
+          ...prev,
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 0,
+            child: [],
+          },
+        ]);
       } else {
         setListContents((prev: any) => [
           ...prev.slice(0, e + 1),
@@ -45,6 +76,16 @@ const ListGenerator = () => {
             content: "",
             placeholder: "Enter data...",
             level: 0,
+          },
+          ...prev.slice(e + 1),
+        ]);
+        setNewListContents((prev: any) => [
+          ...prev.slice(0, e + 1),
+          {
+            content: "",
+            placeholder: "Enter data...",
+            level: 0,
+            child: [],
           },
           ...prev.slice(e + 1),
         ]);
@@ -64,6 +105,26 @@ const ListGenerator = () => {
             level: (level || 0) + 1,
           },
         ]);
+        setNewListContents((prev: any) =>
+          prev.map((item: any, ind: number) => {
+            if (e === ind) {
+              return {
+                ...item,
+                child: [
+                  ...item.child,
+                  {
+                    content: "",
+                    placeholder: "Enter data...",
+                    level: (level || 0) + 1,
+                    child: [],
+                  },
+                ],
+              };
+            } else {
+              return item;
+            }
+          })
+        );
       } else {
         setListContents((prev: any) => [
           ...prev.slice(0, e + 1),
@@ -74,6 +135,26 @@ const ListGenerator = () => {
           },
           ...prev.slice(e + 1),
         ]);
+        setNewListContents((prev: any) =>
+          prev.map((item: any, ind: number) => {
+            if (e === ind) {
+              return {
+                ...item,
+                child: [
+                  ...item.child,
+                  {
+                    content: "",
+                    placeholder: "Enter data...",
+                    level: (level || 0) + 1,
+                    child: [],
+                  },
+                ],
+              };
+            } else {
+              return item;
+            }
+          })
+        );
       }
     }
   };
