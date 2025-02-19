@@ -6,9 +6,9 @@ const Header = () => {
     headerState: { title },
   } = useAppSelector(selectLayout);
   return (
-    <div className="w-full relative justify-center items-center text-white flex h-[50px] bg-[#0d214d]">
+    <div className="w-full relative justify-center items-center text-white flex h-[50px] bg-secondary-blue">
       {title || "I'm header"}
-      <div className="absolute right-5 cursor-pointer rounded-full hover:bg-white hover:text-[#0d214d] h-10 w-10 flex items-center justify-center">
+      <div className="absolute right-5 cursor-pointer rounded-full hover:bg-white hover:text-secondary-blue h-10 w-10 flex items-center justify-center">
         <i className="fa-solid fa-user" />
       </div>
     </div>

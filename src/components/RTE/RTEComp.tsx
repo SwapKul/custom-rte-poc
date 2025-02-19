@@ -28,6 +28,7 @@ const RTE = () => {
   };
 
   return (
+    // <div className="flex-col w-full m-auto h-full rounded-[5px] bg-white">
     <div className="flex flex-col w-full m-auto h-full p-4 pb-0 rounded-[5px] bg-white">
       <IconButton
         content={"fa-solid fa-plus fa-beat"}

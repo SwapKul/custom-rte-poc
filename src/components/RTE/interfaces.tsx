@@ -13,3 +13,15 @@ export interface IContentTypeSelectorProps extends IContent {
   updateAction: any;
   // updateAction: (index: number, value: string | null | unknown) => void;
 }
+
+export interface IStacks {
+  name: string;
+}
+
+export interface IProgLang {
+  language: string;
+}
+
+export interface IFramework {
+  technology: string;
+}
