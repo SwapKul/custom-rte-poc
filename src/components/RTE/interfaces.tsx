@@ -1,3 +1,5 @@
+import { UnknownAction } from "@reduxjs/toolkit";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IContent {
   type: string;
@@ -15,7 +17,7 @@ export interface IContentTypeSelectorProps extends IContent {
 }
 
 export interface IStacks {
-  name: string;
+  stack: string;
 }
 
 export interface IProgLang {
@@ -23,5 +25,17 @@ export interface IProgLang {
 }
 
 export interface IFramework {
-  technology: string;
+  framework: string;
+}
+
+export interface IStepCompProps {
+  title: string;
+  option: string;
+  options: IProgLang[] | IFramework[] | IStacks[];
+}
+
+export interface IStep {
+  title: string;
+  option: string;
+  options: IProgLang[] | IFramework[] | IStacks[];
 }

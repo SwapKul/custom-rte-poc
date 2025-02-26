@@ -12,9 +12,9 @@ export const navigationArr: ISidebarItem[] = [
     link: "/rte",
   },
   {
-    name: "Products",
-    icon: "fa-solid fa-box",
-    link: "/products",
+    name: "Progress Bar",
+    icon: "fa-solid fa-bars-progress",
+    link: "/progress",
   },
   {
     name: "Orders",
